@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+</head>
+<body>
+    <header>
+
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+
+
+        <a href="/" class="logo" style="margin: 0 50px 0 0;">flower<span>.</span></a>
+        <form action="{% url 'search'%}" method="get" id="form" >
+                <input type="search" id="query" name="q" placeholder="Search..." style="border-radius: 5px; width: 300px; height: 35px;border-style: solid;border-width: 1px;">
+                <button type="submit" style="height: 35px;border-radius: 5px; width: 70px;background-color: aqua;border-style: solid;border-width: 1px;">Search</button>
+            </form>
+            {% if user.is_authenticated %}
+            <h1> { hi &nbsp;&nbsp;{{user.first_name}} } </h1>
+            {% endif %}
+       
+            
+            
+            {% if user.is_authenticated %}
+            <a href="{% url 'view_cart' %}"  ><h1>| cart |</h1></a>
+            <a href="{% url 'orders'%}" ><h1>| orders |</h1></a>
+              <a href="{% url 'signout' %}" ><h1>| signout |</h1></a>
+            {% else %}
+            <a href="{% url 'signin' %}" ><h1>| signin |</h1></a>
+            {% endif %}
+        </div>
+
+    </header>
+ <!--home section starts-->
+    <section class="home" id="home">
+        <div class="content">
+            <h3>Shop it </h3>
+            <span>natural and beautiful flowers</span>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Vel tempora modi beatae quo laborum corporis aut! Perferendis ipsum esse facere suscipit
+             ad magni officia excepturi, deserunt molestias debitis, dolor vel!</p>
+            <a href="/" class="btn">shop now</a>
+        </div>
+
+    </section>
+<!--home section ends-->
+<!--categories section-->
+<section class="categories" id="categories">
+    <h1 class="heading">Categories</h1>
+
+    <div class="cat-box-container">
+        {% for i in category %}
+        <div class="cat-box">
+            <div class="image">
+                <img src="{{i.image.url}}" alt="img">
+            </div>
+            <div class="content">
+                <a href="{{i.get_categories_url}}"><h3>{{i.category_name}}</h3></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+<!--categories end section-->
+<!--products section ends-->
+    <section class="products" id="products2">
+        <h1 style="font-size: 15px;margin:0 0 12px 25px;" >Offerproducts</h1>
+        <div class="row">
+            {% for i in offer %}
+          <div class="column" style="margin-bottom: 30px;">
+            <div class="card" style="border-style: solid;border-color: rgb(12, 12, 12);border-width: 1px;box-shadow: 2px 2px 2px 2px #888;">
+              <img src="{{i.image.url}}" style="width: 200px;height: 200px;">
+              <a href="{{i.get_product_url}}"><h2 style="text-align: center;">{{i.name}}</h2></a>
+              <div class="price" style="font-size: 15px;text-align: center;" >{{i.price}} &nbsp;<span style="text-decoration: line-through;">{{i.base_price}}</span></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+
+    </section>
+
+   <!--products section ends-->
+
+    <!--trending smartphones-->
+<section class="products" id="products3">
+        <h1 class="heading" style="margin:0 0 12px 25px;">Trending Smartphones </h1>
+        <div class="row">
+            {% for i in trending_smartphones %}
+          <div class="column" style="margin-bottom: 30px;">
+            <div class="card" style="border-style: solid;border-color: rgb(12, 12, 12);border-width: 1px;box-shadow: 2px 2px 2px 2px #888;">
+              <img src="{{i.image.url}}" style="width: 130px;height: 200px;">
+              <a href="{{i.get_product_url}}"><h2 style="text-align: start;">{{i.name}}</h2></a>
+              <div class="price" style="font-size: 15px;text-align: center;" >{{i.price}} &nbsp;<span style="text-decoration: line-through;">{{i.base_price}}</span></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    </section>
+
+    <!--trending smartphones section end-->
+
+<!--trending laptops section-->
+<section class="products" id="products">
+        <h1 class="heading" style="margin:0 0 12px 25px;">Trending  Laptops</h1>
+        <div class="row">
+            {% for i in trending_laptops %}
+          <div class="column" style="margin-bottom: 30px;">
+            <div class="card" style="border-style: solid;border-color: rgb(12, 12, 12);border-width: 2px;box-shadow: 2px 2px 2px 2px #888;">
+              <img src="{{i.image.url}}" style="width: 150px;height: 170px;">
+              <a href="{{i.get_product_url}}"><h2 style="text-align: center;">{{i.name}}</h2></a>
+              <div class="price" style="font-size: 15px;text-align: center;" >{{i.price}} &nbsp;<span style="text-decoration: line-through;">{{i.base_price}}</span></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+
+    </section>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+
+        <a href="#" class="logo">flower<span>.</span></a>
+        <form action="{% url 'search'%}" method="get" id="form" >
+            <input type="search" id="query" name="q" placeholder="Search..." style="border-radius: 5px; width: 300px; height: 35px;border-style: solid;border-width: 1px;">
+            <button type="submit" style="height: 35px;border-radius: 5px; width: 70px;background-color: aqua;border-style: solid;border-width: 1px;">Search</button>
+        </form>
+        <a href="/"  ><h1>| Home |</h1></a>
+
+       
+   
+        
+        
+        {% if user.is_authenticated %}
+        <a href="{% url 'view_cart' %}"  ><h1 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">| cart |</h1></a>
+        <a href="{% url 'orders'%}" ><h1>| orders |</h1></a>
+          <a href="{% url 'signout' %}" ><h1>| signout |</h1></a>
+        {% else %}
+        <a href="{% url 'signin' %}" ><h1 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">| signin |</h1></a>
+        {% endif %}
+    </header>
+
+    <!-- <div class="small-container single-product" style="margin-top: 40px;"> -->
+        <div style="display: flex;flex-direction: row;" > 
+            <div style="width: 40%;margin: 120px 0 0 160px" >
+                <img src="{{product.image.url}}" width="100%"  style="width:400px ;  border-style: solid;border-width: 3px;height: 400px;padding: 20px 20px 20px 20px;" >
+            </div>
+            <div  style="font-size: 20px;width: 60%;margin-top: 100px;" >
+                <h1 style=" text-decoration: underline;font-family:Arial, Helvetica, sans-serif">{{product.name}}</h1>
+                <div class="price" style="font-size: 25px;text-align: start;text-decoration: solid;font-family:'Franklin Gothic Medium'" >Rs : {{product.price}} &nbsp;<span style="text-decoration: line-through;">{{product.base_price}}</span></div>
+
+                <br>
+                <h3 style="font-size: 20px;text-decoration: underline;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">product detils</h3><br>
+                <p style="font-size: 16px;font-family:'Franklin Gothic Medium'"> {{product.description}}</p><br><br><br>
+                {% if user.is_authenticated %}
+                <a href="{% url 'add_to_cart' product.id %}" class="btn">add to cart</a>
+                {% else %}
+                signin to add cart &nbsp; <button style="border-radius: 10px;  background: rgb(235, 111, 66); width: 110px;height: 30px; font-size: 17px;color: black;"><a href="{% url 'signin' %}">signin</a></button>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+</body>    

@@ -1,0 +1,93 @@
+*{
+    padding: 0;
+    margin: 80px ;
+    font-family: sans-serif;
+}
+body{
+    background-color: rgba(241, 245, 245, 0.973);
+    background-size: cover;
+    color: #0e0d0d;
+}
+.registration-form{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width:450px;
+    background: #6ddfdf;
+    margin-top: 40px;
+    
+
+}
+.registration-form h1{
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 30px;
+}
+.registration-form p{
+    font-size: 20px;
+    margin: 8px 0;
+    margin-left: 15px;
+}
+.registration-form input{
+    font-size: 16px;
+    padding: 15px 10px;
+    width: 90%;
+    border: 0;
+    border-radius: 5px;
+    outline:#0e0d0d;
+    margin-left: 15px;
+}
+.registration-form button{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 10px 15px;
+    width: 30%;
+    border: 1px;
+    border-radius: 5px;
+    background-color: #f1e314;
+    margin-left: 15px;
+}
+
+/* signin */
+
+.signin-form{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width:350px;
+
+}
+.signin-form h1{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 90px;
+}
+.signin-form p{
+    font-size: 20px;
+    margin: 8px 0;
+}
+
+/* .signin-form input{
+    font-size: 16px;
+    padding: 15px 10px;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    border-style: solid;
+
+} */
+.signin-form button{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 10px 15px;
+    width: 50%;
+    border: 0;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+
+

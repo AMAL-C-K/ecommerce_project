@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'cart.css' %}">
+</head>
+<body>
+    <header>
+
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+
+        <a href="#" class="logo">flower<span>.</span></a>
+        <form action="{% url 'search'%}" method="get" id="form" >
+            <input type="search" id="query" name="q" placeholder="Search..." style="border-radius: 5px; width: 300px; height: 35px;border-style: solid;border-width: 1px;">
+            <button type="submit" style="height: 35px;border-radius: 5px; width: 70px;background-color: aqua;border-style: solid;border-width: 1px;">Search</button>
+        </form>
+        <h1>...........</h1>
+        <a href="/" ><h1>| Home |</h1></a>
+        <a href="{% url 'orders'%}" ><h1 style="margin-right: 20px;">| orders |</h1></a>
+        <a href="{% url 'signout' %}" ><h1>| signout |</h1></a>
+        
+    </header>
+    <br><br><br><br><br>
+    <div class="wrapper">
+        <h1>cart</h1>
+        <div class="project">
+            <div class="shop">
+             
+                {% for item in cart %}
+                
+                <div class="box">
+                    <img src="{{item.product.image.url}}" style="height: 80px;width: 160px;margin: 30px 40px 0 0;">
+                    <div class="content">
+                        <a href="{{item.product.get_product_url}}"><h2 style="margin-bottom: 10px;">{{item.product.name}}</h2></a>
+                            <h2>price : {{item.product.price}}</h2>
+        
+                      <br> <br> <br>
+                        <p class="unit" style="font-size: 15px;">
+                            Quantity: &nbsp;
+                            <a href="{% url 'add_quantity' item.id %}" id="plus"  class="fas fa-plus"></a>
+                             <input value="{{item.quantity}}">
+                             <a href="{% url 'dec_quantity' item.id %}"  class="fas fa-minus"></a></p>
+                        
+                        <h2>Total = {{item.total}}</h2>
+                        <p class="btn-area">
+                            <i class="fa fa-trash"></i>
+                            <span class="btn2" ><a href="{% url 'delete' item.id %}">remove</a></span><br>
+         <a href="{% url 'checkout' item.id %}">checkout</a>
+                        </p>
+                    </div>
+                </div>  
+
+{% endfor %}
+
+
+            </div>
+
+<!--            <div class="right-bar">-->
+<!--                <p><span>Subtotal</span><span>{{subtotal}}</span></p>-->
+
+
+<!--            </div>-->
+
+        </div>
+
+    </div>
+
+
+
+
+</body>    
+</html>

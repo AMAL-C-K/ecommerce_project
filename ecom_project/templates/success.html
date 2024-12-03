@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'cart.css' %}">
+</head>
+<body>
+    <header>
+
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+
+        <a href="/" class="logo">flower<span>.</span></a>
+        
+    </header>
+      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+        <h1 style="text-align: center;">payment successfull</h1><br> <br> <br>
+        <a href="{% url 'orders' %}"><h1 style="text-align: center;">View orders</h1></a> 
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">-->
+    <link rel="stylesheet" href="{% static 'style1.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+        <a href="#" class="logo">flower<span>.</span></a>
+        <a href="/"  ><h1>| Home |</h1></a>
+    </header>
+
+<br><br><br><br><br><br><br>
+    <div style="width: 400px;height: 550px;background: rgb(5, 213, 250); margin: 0 0 0 37%;">
+        <br>
+        <form action="#" method="post">
+            <h1 style="text-align: center;margin: 0 0 0 0;">Sign-up</h1>
+            {% csrf_token %}
+            <h3 style="margin:10px 0 10px 10px;"> Name : </h3>
+            <input type="text" name="name" placeholder="Name" style="width: 90%; margin: 0 0 0 10px;height: 30px; border-radius: 8px;" >
+            <h3 style="margin:10px 0 10px 10px;"> Email : </h3>
+            <input type="text" name="email" placeholder="Username" style="width: 90%; margin: 0 0 0 10px;height: 30px; border-radius: 8px;" >
+            <h3 style="margin:10px 0 10px 10px;"> Username : </h3>
+            <input type="text" name="username" placeholder="Username" style="width: 90%; margin: 0 0 0 10px;height: 30px; border-radius: 8px;" >
+            <h3 style="margin:10px 0 10px 10px;">Password :</h3>
+            <input type="password" name="password" placeholder="Password" style="width: 90%; margin: 0 0 0 10px;height: 30px; border-radius: 8px;">
+            <h3 style="margin:10px 0 10px 10px;">Confirm Password :</h3>
+            <input type="password" name="password2" placeholder="Password" style="width: 90%; margin: 0 0 0 10px;height: 30px; border-radius: 8px;">
+
+            <button type="submit" style="margin:20px 0 0 130px;border-radius: 8px; background: rgb(36, 144, 245); width: 70px;height: 40px;">signup</button><br>
+        </form>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Already have an account &nbsp;&nbsp;<a href="{% url 'signin'%}" style="font-size: 15px;font-weight: 3px;text-decoration: underline;">signin</a><br>
+        {% for message in messages %}
+        <h1 style="text-align: center;margin-top: 15px;">{{message}}</h1>
+        {% endfor %}
+<br><br><br>
+<h3>Note:</h3>
+        <h4 style="text-align: start;">- password contains atleast One  [0-9][a-z][A_Z][!@#$%^&*]</h4>
+        <h4 style="text-align: start;">- you can use email as username</h4>
+
+    </div>
+
+</body>

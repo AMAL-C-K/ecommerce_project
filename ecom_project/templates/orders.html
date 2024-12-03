@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'cart.css' %}">
+</head>
+<body>
+    <header>
+
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+
+        <a href="#" class="logo">flower<span>.</span></a>
+        <form action="{% url 'search'%}" method="get" id="form" >
+            <input type="search" id="query" name="q" placeholder="Search..." style="border-radius: 5px; width: 300px; height: 35px;border-style: solid;border-width: 1px;">
+            <button type="submit" style="height: 35px;border-radius: 5px; width: 70px;background-color: aqua;border-style: solid;border-width: 1px;">Search</button>
+        </form>
+        <h1>..........</h1>
+        <a href="/" ><h1>| Home |</h1></a>
+        <a href="{% url 'view_cart'%}" ><h1 style="margin-right: 20px;">| Cart |</h1></a>
+        <a href="{% url 'signout' %}" ><h1>| signout |</h1></a>
+        
+    </header>
+    <br><br><br><br><br>
+    <div class="wrapper">
+        <h1>My orders</h1>
+        <div class="project">
+            <div class="shop">
+               {% for orders in orders %}
+                <div class="box">
+                    <img  style="height: 200px;width: 200px;margin: 0 40px 0 0;"  src="{{orders.cart.product.image.url}}">
+                    <div class="content">
+                        <a href="{{orders.cart.product.get_product_url}}"><h3 style="font-size: 15px;">{{orders.product_name}}</h3></a>
+                         <h3>Paid: Rs  - {{orders.cart.total}}</h3>
+                         <h3 style="color: green;">successfully ordered</h3>
+
+
+
+                    </div>
+                </div>
+
+{% endfor %}
+
+            </div>
+
+<!--            <div class="right-bar">-->
+<!--                <p><span>Subtotal</span><span>{{subtotal}}</span></p>-->
+
+
+<!--            </div>-->
+
+        </div>
+
+    </div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'cart.css' %}">
+</head>
+<body>
+    <header>
+
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+
+        <a href="#" class="logo">flower<span>.</span></a>
+        <a href="/"  ><h1>| Home |</h1></a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'view_cart' %}"  ><h1>cart</h1></a>
+            <a href="{% url 'orders'%}" ><h1>orders</h1></a>
+              <a href="{% url 'signout' %}" ><h1>signout</h1></a>
+            {% else %}
+            <a href="{% url 'signin' %}" ><h1>signin</h1></a>
+            {% endif %}
+    </header>
+    <br><br><br><br><br><br><br><br><br>
+    <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+<body>
+    <h1 style="text-align: center;margin-bottom: 10px;">search results for "{{query}}"</h1><br>
+<div class="row" >
+    {% for product in products %}
+  <div class="column" style="margin-bottom: 40px;">
+    <div class="card">
+      <img src="{{product.image.url}}" style="width: 200px;height: 200px;">
+      <a href="{{product.get_product_url}}"><h2 >{{product.name}}</h2></a>
+      <div class="price" style="font-size: 18px;" >{{product.price}} &nbsp;<span style="text-decoration: line-through;">{{product.base_price}}</span></div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<hr>
+</body>
+</html>

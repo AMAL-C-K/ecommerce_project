@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!--  <link rel="stylesheet" href="{% static 'style1.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'style.css' %}"> 
+
+</head>
+<body>
+    <header>
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+        <a href="#" class="logo">flower<span>.</span></a>
+        <a href="/"  ><h1>| Home |</h1></a>
+        
+    </header>
+    
+    <!-- <div class="signin-form">
+        <h1>Sign-in</h1>
+        <form action="#" method="post">
+            {% csrf_token %}
+            <p>Email :</p>
+            <input type="text" name="username" placeholder="Username" >
+            <p>Password :</p>
+            <input type="password" name="password" placeholder="Password" style="border-style: solid;">
+            <button type="submit" style="margin-left: 40px;background: rgb(36, 144, 245);">signin</button><br>
+        </form>
+        don't have an account &nbsp;<a href="{% url 'signup'%}" style="font-size: 15px;">signup</a>
+        {% for message in messages %}
+        <h2 style="text-align: center;">{{message}}</h2>
+        {% endfor %}
+    </div> -->
+<br><br><br><br><br><br><br><br><br>
+    <div style="width: 350px;height: 350px;background: rgb(5, 213, 250); margin: 0 0 0 40%;">
+        <br><br>
+        <form action="#" method="post">
+            <h1 style="text-align: center;margin: 0 0 0 0;">Sign-in</h1>
+            {% csrf_token %}
+            <h2 style="margin:20px 0 10px 10px;"> Username : </h2>
+            <input type="text" name="username" placeholder="Username" style="width: 90%; margin: 0 0 0 10px;height: 40px; border-radius: 8px;" >
+            <h2 style="margin:15px 0 10px 10px;">Password :</h2>
+            <input type="password" name="password" placeholder="Password" style="width: 90%; margin: 0 0 0 10px;height: 40px; border-radius: 8px;">
+            <button type="submit" style="margin:20px 0 0 130px;border-radius: 8px; background: rgb(36, 144, 245); width: 70px;height: 40px;">signin</button><br>
+        </form>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        don't have an account &nbsp;&nbsp;<a href="{% url 'signup'%}" style="font-size: 12px;text-decoration: underline;">signup</a><br>
+        {% for message in messages %}
+        <h1 style="text-align: center;margin-top: 15px;">{{message}}</h1>
+        {% endfor %}
+    </div><br>
+        <h2 style="text-align: center;text-decoration: underline;">Testing account</h2>
+        <h2 style="text-align: center;">username : demo@gmail.com</h2>
+        <h2 style="text-align: center;">password: Demo@1234</h2>
+</body>
