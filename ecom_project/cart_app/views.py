@@ -11,16 +11,6 @@ from django.views.decorators.csrf import csrf_exempt
 @login_required(login_url='signin')
 def add_to_cart(request, product_id):
     product = Products.objects.get(id=product_id)
-    # try:
-    #     cart_item = Cart.objects.get(product=product, user=request.user)
-    #     if cart_item.quantity < cart_item.product.stock:
-    #         cart_item.quantity += 1
-    #         cart_item.save()    
-    # except Cart.DoesNotExist:
-    #     cart_item = Cart.objects.create(product=product, quantity=1, user=request.user)
-    #     cart_item.save()
-    
-
     cart_item = Cart.objects.create(product=product, quantity=1, user=request.user)
     cart_item.save()
     return redirect('view_cart')
@@ -31,14 +21,8 @@ def add_to_cart(request, product_id):
 def view_cart(request, cart=None, subtotal=0, count=0):
     try:
         cart = Cart.objects.filter(user=request.user,ordered=False).order_by('-created_at')
-        # for i in cart:
-        #     subtotal += (i.product.price * i.quantity)
-        #     count += i.quantity
     except ObjectDoesNotExist:
         pass
-    
-   
-   
         
     context = {
         'cart': cart,
@@ -48,18 +32,6 @@ def view_cart(request, cart=None, subtotal=0, count=0):
     }
 
     return render(request, 'cart.html', context)
-
-
-# def dec_quantity(request, product_id):
-#     product = get_object_or_404(Products, id=product_id)
-#     cart = Cart.objects.get(user=request.user, product=product)
-#     if cart.quantity > 1:
-#         cart.quantity -= 1
-#         cart.save()
-#     else:
-#         cart.delete()
-#     return redirect('view_cart')
-
 
 @login_required(login_url='signin')
 def dec_quantity(request, cart_id):
@@ -81,15 +53,6 @@ def add_quantity(request, cart_id):
         cart.save()
 
     return redirect('view_cart')
-
-
-
-
-# def remove(request, product_id):
-#     product = get_object_or_404(Products, id=product_id)
-#     cart = Cart.objects.get(user=request.user, product=product)
-#     cart.delete()
-#     return redirect('view_cart')
 
 
 @login_required(login_url='signin')
